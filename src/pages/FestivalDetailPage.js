@@ -73,25 +73,42 @@ function FestivalDetailPage() {
     }
   };  
 
-  const handleUserClick = (userId) => {
-    setSelectedUserId(userId);
-    const dummyPointHistory = {
-      1: [
-        { id: 1, time: '2025.03.05 14:03', type: '차감', point: 1 },
-        { id: 2, time: '2025.03.05 14:01', type: '지급', point: 4 },
-      ],
-      2: [
-        { id: 1, time: '2025.03.05 14:03', type: '지급', point: 100 },
-        { id: 2, time: '2025.03.05 14:01', type: '지급', point: 4 },
-      ],
-      3: [
-        { id: 1, time: '2025.03.05 14:03', type: '차감', point: 100 },
-        { id: 2, time: '2025.03.05 14:01', type: '지급', point: 100 },
-      ],
-    };
-    setPointHistory(dummyPointHistory[userId] || []);
-    setPointInput('');
+  const handleUserClick = async (participantId) => {
+    try {
+      setSelectedUserId(participantId);
+      const accessToken = localStorage.getItem('accessToken');
+  
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/v1/admin/festivals/${festivalId}/participants/${participantId}/points`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+  
+      const json = await res.json();
+      if (!res.ok || !json.status) {
+        throw new Error(json.message || '포인트 조회 중 오류 발생');
+      }
+  
+      const formattedHistory = json.data.histories.map((item, idx) => ({
+        id: idx,
+        time: item.date,
+        type: item.transactionType === 'CREDIT' ? '지급' : '차감',
+        point: item.point,
+      }));
+  
+      setPointHistory(formattedHistory);
+      setPointInput('');
+    } catch (err) {
+      console.error('🎯 Point History API Error:', err);
+      setError(err.message);
+    }
   };
+  
 
   const handlePointGive = () => {
     const point = parseInt(pointInput, 10);
@@ -167,9 +184,9 @@ function FestivalDetailPage() {
             <tbody>
               {userList.map((user) => (
                 <tr
-                  key={user.id}
+                  key={user.participantId}
                   className="user-row"
-                  onClick={() => handleUserClick(user.id)}
+                  onClick={() => handleUserClick(user.participantId)}
                 >
                   <td>{user.nickname}</td>
                   <td>{user.name}</td>
