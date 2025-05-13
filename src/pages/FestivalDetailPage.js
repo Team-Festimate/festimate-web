@@ -110,27 +110,41 @@ function FestivalDetailPage() {
   };
   
 
-  const handlePointGive = () => {
+  const handlePointGive = async () => {
     const point = parseInt(pointInput, 10);
-    if (isNaN(point) || point <= 0) return;
-
-    const newHistory = [
-      ...pointHistory,
-      {
-        id: Date.now(),
-        time: new Date().toLocaleString('ko-KR', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
-        type: '지급',
-        point,
-      },
-    ];
-    setPointHistory(newHistory);
-    setPointInput('');
+    if (isNaN(point) || point <= 0 || !selectedUserId) return;
+  
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/v1/admin/festivals/${festivalId}/points`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            participantId: selectedUserId,
+            point: point,
+          }),
+        }
+      );
+  
+      const json = await res.json();
+  
+      if (!res.ok || !json.status) {
+        throw new Error(json.message || '포인트 지급 실패');
+      }
+  
+      alert('✅ 포인트가 지급되었습니다!');
+      setPointInput('');
+      handleUserClick(selectedUserId);
+  
+    } catch (err) {
+      console.error('🎯 Point Give API Error:', err);
+      alert('❌ 포인트 지급 중 오류 발생: ' + err.message);
+    }
   };
 
   const pointTotal = pointHistory.reduce((sum, h) => {
