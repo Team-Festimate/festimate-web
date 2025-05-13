@@ -162,14 +162,18 @@ function FestivalDetailPage() {
   return (
     <div className="festival-detail-wrapper">
       <div className="header">
-        <span className="status-badge status-school">{festival.status === 'PROGRESS' ? '학교' : '기타'}</span>
+        <span className="status-badge status-school">
+          {getStatusLabel(festival.status)}
+        </span>
         <span className="festival-title">{festival.title}</span>
         <span className="festival-date">{festival.festivalDate}</span>
         <span className="invite-code">(초대코드:{festival.inviteCode})</span>
-        <span className="logout" onClick={() => {
-          localStorage.clear();
-          navigate('/admin/login');
-        }}>로그아웃</span>
+        <span
+          className="logout"
+          onClick={() => {
+            localStorage.clear();
+            navigate('/admin/login');
+          }}>로그아웃</span>
       </div>
 
       <div className="search-section">
@@ -263,5 +267,21 @@ function FestivalDetailPage() {
     </div>
   );
 }
+
+// FestivalDetailPage.js 내의 유틸 함수 추가
+const getStatusLabel = (status) => {
+  switch (status) {
+    case 'BEFORE':
+      return '시작 전';
+    case 'PROGRESS':
+      return '진행 중';
+    case 'END':
+      return '종료';
+    case 'REFUND':
+      return '환불기간';
+    default:
+      return '알 수 없음';
+  }
+};
 
 export default FestivalDetailPage;
