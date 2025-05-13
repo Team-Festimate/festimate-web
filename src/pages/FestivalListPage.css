@@ -1,0 +1,72 @@
+.festival-wrapper {
+    padding: 2rem;
+    background-color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  
+  .festival-title {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .festival-box {
+    background-color: #fff0f0;
+    border: 2px solid #ffdede;
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  
+  .festival-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+  }
+  
+  .status-badge {
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #fff;
+  }
+  
+  .status-before {
+    background-color: #adb5bd; /* 회색 (시작 전) */
+  }
+  
+  .status-refund {
+    background-color: #ffa94d; /* 주황 (환불기간) */
+  }
+  
+  .status-active {
+    background-color: #f15a5a; /* 빨강 (진행 중) */
+  }
+  
+  .status-end {
+    background-color: #6c757d; /* 짙은 회색 (종료) */
+  }
+  
+  .festival-name {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .invite-code {
+    font-size: 0.9rem;
+    margin-left: 5px;
+    color: #333;
+  }
+  
+  .enter-btn {
+    margin-left: auto;
+    color: #f15a5a;
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
