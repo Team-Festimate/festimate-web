@@ -1,0 +1,168 @@
+.festival-detail-wrapper {
+    padding: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #f15a5a;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .status-badge {
+    padding: 2px 8px;
+    background-color: white;
+    color: #f15a5a;
+    font-weight: bold;
+    border-radius: 999px;
+    font-size: 12px;
+  }
+  
+  .status-school {
+    background-color: #fff;
+    color: #f15a5a;
+  }
+  
+  .festival-title {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .invite-code,
+  .festival-date {
+    margin-left: auto;
+    font-size: 14px;
+  }
+  
+  .logout {
+    color: white;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .search-box input {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-box button {
+    background-color: #f15a5a;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .result-section {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .user-list-box,
+  .point-history-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: #fafafa;
+  }
+  
+  .section-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 6px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  .user-row {
+    cursor: pointer;
+  }
+  
+  .point-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .point-action input {
+    width: 80px;
+    padding: 4px;
+  }
+  
+  .point-action button {
+    padding: 4px 12px;
+    background-color: #ccc;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: not-allowed;
+  }
+  
+  .point-chip {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .point-chip.plus {
+    background-color: #f15a5a;
+  }
+  
+  .point-chip.minus {
+    background-color: #5a79f1;
+  }
+  
+  .point-total {
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .footer {
+    margin-top: 24px;
+    text-align: right;
+  }
+  
+  .end-button {
+    background-color: #f15a5a;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
