@@ -43,20 +43,35 @@ function FestivalDetailPage() {
     fetchFestivalDetail();
   }, [festivalId]);
 
-  const handleSearch = () => {
-    const dummyUsers = [
-      { id: 1, nickname: '가대차은우', name: '차은우', phone: '010-1234-5678' },
-      { id: 2, nickname: '가대고윤정', name: '김히은', phone: '010-1111-1111' },
-      { id: 3, nickname: '개죽ㅣ', name: '이ㄴ진', phone: '010-2222-2222' },
-    ];
-    const filtered = dummyUsers.filter((user) =>
-      user.nickname.includes(searchKeyword)
-    );
-    setUserList(filtered);
-    setSelectedUserId(null);
-    setPointHistory([]);
-    setPointInput('');
-  };
+  const handleSearch = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      const res = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/v1/admin/festivals/${festivalId}/participants/search?nickname=${encodeURIComponent(searchKeyword)}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+  
+      const json = await res.json();
+  
+      if (!res.ok || !json.status) {
+        throw new Error(json.message || '검색 중 오류 발생');
+      }
+  
+      setUserList(json.data);
+      setSelectedUserId(null);
+      setPointHistory([]);
+      setPointInput('');
+    } catch (err) {
+      console.error('🎯 Participant Search API Error:', err);
+      setError(err.message);
+    }
+  };  
 
   const handleUserClick = (userId) => {
     setSelectedUserId(userId);
