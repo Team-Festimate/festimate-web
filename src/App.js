@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
@@ -7,11 +6,11 @@ import FestivalDetailPage from './pages/FestivalDetailPage';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/admin">
       <Routes>
-        <Route path="/admin/login" element={<LoginPage />} />
-        <Route path="/admin/festivals" element={<FestivalListPage />} />
-        <Route path="/admin/festivals/:festivalId" element={<FestivalDetailPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/festivals" element={<FestivalListPage />} />
+        <Route path="/festivals/:festivalId" element={<FestivalDetailPage />} />
       </Routes>
     </Router>
   );
